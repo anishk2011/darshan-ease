@@ -1,91 +1,147 @@
-# DarshanEase (MERN)
+# DarshanEase – Temple Darshan Ticket Booking System
 
-Minimal MERN app for temple darshan ticket booking with JWT auth and role-based access.
+## Overview
+
+DarshanEase is a **full-stack MERN web application** that allows devotees to explore temples, view available darshan slots, and book tickets online. The system provides a smooth and secure way to plan temple visits with real-time slot availability, booking management, and donation support.
+
+This project is built using the **MERN stack (MongoDB, Express.js, React.js, Node.js)** and demonstrates role-based authentication, REST API design, and responsive frontend development.
+
+---
+
+## Features
+
+### User Features
+
+- User Registration and Login (JWT Authentication)
+- View available temples
+- View darshan slots for a selected temple
+- Book darshan slots
+- Cancel booked slots
+- View personal booking history
+- Donate to temples
+
+### Admin / Organizer Features
+
+- Add new temples
+- Create darshan slots
+- Manage temple information
+- View all bookings
+- View all donations
+
+---
 
 ## Tech Stack
-- MongoDB + Mongoose
-- Express
-- React (CRA)
+
+### Frontend
+- React.js
+- Bootstrap
+- Axios
+- React Router
+- React Toastify
+
+### Backend
 - Node.js
-- Bootstrap, Axios, React Router, React Toastify
+- Express.js
+- MongoDB
+- Mongoose
+- JWT Authentication
+- Bcrypt Password Hashing
 
-## Roles
-- `USER`: browse temples, book/cancel own bookings, donate, view own records.
-- `ORGANIZER`: all USER abilities + manage temples and slots.
-- `ADMIN`: all ORGANIZER abilities + view all bookings and all donations.
+---
 
-## Backend API
-Base URL: `http://localhost:5000`
+## Project Structure
 
-- Auth:
-  - `POST /api/auth/register`
-  - `POST /api/auth/login`
-- Temples:
-  - `GET /api/temples`
-  - `POST /api/temples` (`ADMIN/ORGANIZER`)
-  - `PUT /api/temples/:id` (`ADMIN/ORGANIZER`)
-  - `DELETE /api/temples/:id` (`ADMIN/ORGANIZER`)
-- Slots:
-  - `GET /api/slots?templeId=...`
-  - `POST /api/slots` (`ADMIN/ORGANIZER`)
-  - `PUT /api/slots/:id` (`ADMIN/ORGANIZER`)
-  - `DELETE /api/slots/:id` (`ADMIN/ORGANIZER`)
-- Bookings:
-  - `POST /api/bookings`
-  - `GET /api/bookings/me`
-  - `PATCH /api/bookings/:id/cancel`
-  - `GET /api/bookings` (`ADMIN`)
-- Donations:
-  - `POST /api/donations`
-  - `GET /api/donations/me`
-  - `GET /api/donations` (`ADMIN`)
 
-## Exact Run Steps
-1. Open terminal at repo root:
+darshan-ease
+│
+├── backend
+│ ├── controllers
+│ ├── middleware
+│ ├── models
+│ ├── routes
+│ ├── server.js
+│ └── seed.js
+│
+├── frontend
+│ ├── public
+│ ├── src
+│ │ ├── components
+│ │ ├── pages
+│ │ └── api
+│ └── package.json
+│
+└── README.md
+
+
+---
+
+## Installation and Setup
+
+### 1️⃣ Clone the repository
+
 ```bash
+git clone https://github.com/anishk2011/darshan-ease.git
 cd darshan-ease
-```
-2. Ensure MongoDB is running locally at `mongodb://127.0.0.1:27017`.
-3. Backend env file:
-```env
-# backend/.env
-PORT=5000
-MONGO_URI=mongodb://127.0.0.1:27017/darshanease
-JWT_SECRET=change_this_to_any_long_string
-```
-4. Install dependencies (if not already installed):
-```bash
-cd backend && npm install
-cd ../frontend && npm install
-cd ..
-```
-5. Seed initial data:
-```bash
-cd backend && npm run seed
-```
-6. Start backend:
-```bash
-cd backend && npm run dev
-```
-7. Start frontend in a second terminal:
-```bash
-cd frontend && npm start
-```
-8. Open UI:
-```text
+2️⃣ Install backend dependencies
+cd backend
+npm install
+3️⃣ Install frontend dependencies
+cd ../frontend
+npm install
+4️⃣ Start MongoDB
+
+Make sure MongoDB service is running.
+
+5️⃣ Start Backend Server
+cd backend
+npm run dev
+
+Backend runs on:
+
+http://localhost:5000
+6️⃣ Start Frontend Application
+cd frontend
+npm start
+
+Frontend runs on:
+
 http://localhost:3000
-```
+Seed Demo Data
 
-## Seeded Credentials
-- Admin
-  - Email: `admin@darshanease.com`
-  - Password: `Admin@123`
-- Organizer
-  - Email: `organizer@darshanease.com`
-  - Password: `Organizer@123`
+To populate the database with sample data:
 
-## Notes
-- Frontend proxy is configured to backend (`http://localhost:5000`).
-- Booking rules are enforced:
-  - Book only if slot is active and not full.
-  - Cancel sets booking status to `CANCELLED` and decrements slot `bookedCount` (minimum 0).
+cd backend
+npm run seed
+
+This will create:
+
+Admin user
+
+Organizer user
+
+Sample temples
+
+Darshan slots
+
+Security Features
+
+JWT based authentication
+
+Role-based access control
+
+Password hashing using bcrypt
+
+Protected API routes
+
+Input validation and error handling
+
+Author
+
+Anish Katariya
+
+GitHub:
+https://github.com/anishk2011
+
+License
+
+This project is created for educational and academic purposes.
